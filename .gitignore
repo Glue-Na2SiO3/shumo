@@ -1,0 +1,24 @@
+# LaTeX 中间文件（保留 .pdf / .tex / .cls）
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.synctex(busy)
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+
+# Office 临时锁文件
+~$*
+.~lock.*
+
+# Python 缓存
+__pycache__/
+*.pyc
+
+# 系统垃圾
+Thumbs.db
+Desktop.ini
+.DS_Store

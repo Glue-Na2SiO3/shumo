@@ -1,0 +1,493 @@
+\documentclass{mcmthesis}
+\mcmsetup{CTeX = false,   % 使用 CTeX 套装时，设置为 true
+        tcn = 2416200, problem = E,
+        sheet = true, titleinsheet = true, keywordsinsheet = true,
+        titlepage = false, abstract = true}
+% \usepackage{newtxtext,newtxmath}
+\usepackage{palatino}
+\usepackage{lipsum}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{tabularray}
+\usepackage{color}
+%\usepackage{ctex}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{float} 
+\usepackage{subcaption}
+\usepackage{setspace}
+% \usepackage{amsmath}
+% \usepackage{hyperref}
+\title{Development and Reflection of Some Industries in Extreme Weather}
+
+\begin{document}
+\begin{abstract}
+In the face of the frequent occurrence of natural and extreme disasters in the current era, the topic of the competition is interlinked from the insurance industry, the construction and manufacturing industry, and the protection of important buildings. The problem of choices and measures to protect important buildings is interconnected and progresses step by step. In order to solve the problem of insurance industry's assessment of regional underwriting risk, we firstly apply hierarchical analysis to the problem of selecting a region. We first use the \textbf{analytic hierarchy process}(AHP) to build comparison matrices based on the hazard level of different disasters, and obtain matrices for different hazard levels.On this basis, suppose the insurance company selects twenty regions and applies the \textbf{Topsis model} (the distance method of superiority and inferiority solutions), together with the scores and rankings of the various.The Topsis model is used to obtain the scores and rankings of the twenty regions, together with the economic standards of each region.We have selected the top 20 percent as the recommended underwriting range. The middle 60 percent is named the risk underwriting interval, where risk can be shared through reinsurance. The last 20 percent is named the non-recommended underwriting interval. This answers the first question.
+\\
+In the face of extreme weather and natural disasters in the construction and manufacturing industries, the Topsis model was used to evaluate and compare disaster severity indices for twenty regions.The disaster severity index is normally distributed to select areas with a disaster index distribution of 80 percent or less. This is used as a selection of areas for construction.In addition, For determining the grade of disaster-resistant materials, based on the quotes of disaster-resistant materials provided by the developer, the set of rubric factors related to the type of disaster and the set of rubrics related to the countermeasures are established based on the \textbf{Fuzzy Comprehensive Evaluation Method}(FCE). Then, according to AHP, the set of weights is obtained by combining the local disaster focus. Finally, a fuzzy subset of the level reflecting the disaster-resistant ability is obtained to assist the developer's decision-making.After that, we consider the example of earthquake, a severe natural disaster. The disaster loss is used to reflect the willingness to pay side by side. Then \textbf{Prospect Theory} is introduced to consider the influence of non-ideal factors on decision makers. The relationship between the willingness to pay of the population and the resilience level, i.e., the disaster resistance level, is explored.It is concluded that there is a clear willingness of residents to pay for building toughness ratings. It is demonstrated that increasing the resilience attributes is feasible for both market and humane aspects.
+\\
+To answer the question of assessing the historic value of significant buildings, we still chose to use FCE. By hierarchically building a collection of rubric factors and rubric sets, the economic, historical, cultural, and community significance of significant buildings are quantified to obtain a score that reflects the comprehensive value of the building. This will assist community decision makers in designating better preservation measures.
+\\
+At the end of the issue, we use a combination of \textbf{Underwriting Risk Assessment Model} and \textbf{Building Value Appraisal Model} to analyze and assess the ancient Babylonian site in Iraq and conclude its need for conservation. On this basis, we write a letter to analyze the protection plan, time schedule and other measures for it to better protect the important historical and cultural buildings.
+\\
+\begin{keywords}
+Topsis; AHP; FCE; Prospect Theory 
+\end{keywords}
+\end{abstract}
+\maketitle
+\begin{spacing}{1}
+ \tableofcontents
+\end{spacing}
+ \newpage
+
+
+
+%%\section为一级标题，\subsection为二级标题 \subsubsection为三级标题
+
+\section{Introduction}
+
+\subsection{Problem Background}
+In recent years, the world's frequent extreme weather events have caused significant financial losses to property owners and have made it much more expensive for insurance companies to settle claims. As a result, insurance companies have increased the cost of insuring property against weather-related accidents and have changed their local coverage and whether or not to underwrite locally, depending on economic, geographic, and weather factors in different regions. The result is a huge global problem: the world's insurance coverage gap is growing. The root cause is a crisis in the profitability of insurance companies and the affordability of property owners. This is why it is so important to assess all aspects of risk based on economic, geographic and weather factors in a given region.
+\subsection{Restatement of the Problem}
+Considering the background information and restricted conditions 
+identified in the problem statement, we need to solve the following
+problems:
+\begin{itemize}
+	\item 
+	\textbf{Prpblem 1}: Under what conditions will an insurance company cover? Under what conditions will an insurance company take a risk? What methods of influence can a homeowner use to affect this decision?
+	\item 
+	\textbf{problem 2}: How can your insurance model be adapted to assess where, how and if communities and real estate developers are building in certain locations?
+	\item 
+    \textbf{Problem 3}: In an area where the insurance model is not appropriate, how can it be determined that a building should be preserved because of its cultural, historical, economic or community significance? If it is worthy of preservation, to what extent should it be protected?
+	\item 
+	\textbf{Problem 4}: Select a landmark that is heavily impacted by extreme weather. Use your insurance and conservation models to assess the value of the landmark and write a letter of recommendation for the community of the site.
+\end{itemize}
+\subsection{Analysis of the Problem}
+\begin{itemize}
+	\item 
+	\textbf{Prpblem 1}: Whether or not an insurance company will underwrite a policy depends on a number of factors, such as positive factors, the standard of the local economy, and negative factors, extreme weather conditions, and so on. The quality of the customer base is also evaluated in many ways to complete the decision. We will randomly select several regions and collect data on various types of natural disasters, economic development, and other factors.Firstly, we use hierarchical analysis to weight the frequency of various natural disasters in a year according to their hazards, and then we use the Topsis algorithm to standardize the data of all the factors and calculate the scores to establish the evaluation index system. The system is continuously distributed according to the variable of score, and the \textbf{Q-Q plot test} and \textbf{Sharpiro-Wilk test} are performed to investigate whether the system satisfies the nature of normal distribution. Then choose a certain method to derive the relevant prediction results, to determine the area score to meet what conditions the insurance company can underwrite, or even take a risk.Naming the idea \textbf{Underwriting Risk Assessment Model}.In addition to this, the customer base, i.e., homeowners, is an additional factor that affects the insurer's decision on whether to cover, for example, breakage, and needs to be taken into account in the model.
+	\item 
+	\textbf{problem 2}: For communities and real estate developers to determine how and where to build and develop real estate, it is necessary to assess the local risk index, but also to consider how much extra money communities and real estate developers are willing to invest in enhancing the resilience of their homes, and whether residents are willing to pay extra to enhance the resilience of their homes. The Risk Index can be improved to obtain a \textbf{Disaster Risk Assessment Model} through the model established in Problem 1, while the improvement of Disaster Resilience and the willingness of the residents require the establishment of a \textbf{Disaster Resilience-to-pay Model} and a \textbf{Willingness-to-pay Model for Disaster Resilience Model}. Disaster Resilience Decision Modeling: First, the costs of various measures that developers can apply locally to strengthen the resilience of housing are collected. Each of these measures can be categorized into high-level, medium-level and low-level measures according to the materials used and the effectiveness of the measures, and the prices range from high to low. Since there are differences in the primary and secondary measures applied in different areas due to climatic and geographic differences, and since there are only three levels of each measure, we chose the fuzzy comprehensive evaluation method to calculate whether the extra money invested by the developer in the decision to strengthen the resilience of the housing in the selected area belongs to the advanced, intermediate, or low-level measures. This is because the level of the measure means the level of safety of the residents of the area when they live in the house, i.e., if the high-level measure means that the residents are safe to live in the house, it is recommended for the developer to develop here, and the opposite is not recommended. At the same time, the more money invested will make the price of the house higher and make the residents less willing to pay. So how much extra money developers put in to make their buildings more resilient depends on the residents' willingness to pay for resilience. Therefore, we collected data and made the Willingness-to-pay Model for Disaster Resilience.
+	\item 
+	\textbf{Problem 3}: For an area that is no longer suitable for insurance, decide whether and to what extent a particular building in the area should be preserved. This problem is a decision problem that requires a rating of the value of this building in terms of its value. The value of the building can be rated from a number of indicators, and then use the fuzzy synthesis method to transform these factors that are not easy to quantify into quantitative factors according to the theory of affiliation, and in the middle of the hierarchical analysis method, the expert survey method, and other methods to calculate the weights of evaluation indexes, and ultimately, after the data processing to get the value of the building's rating, to establish a \textbf {Building Value Appraisal Model}.
+	\item
+	\textbf{Problem 4}: Select a historic landmark, collect the appropriate data, and analyze the value of the historic landmark through the \textbf{Underwriting Risk Assessment Model} and \textbf{Building Appraisal Model}. Make recommendations for the development of the landmark.
+\end{itemize}
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=16cm]{siwei.png}
+	\caption*{}
+\end{figure}
+\section{Assumptions and Justifications}
+ To simplify the given problems and modify it more appropriate for simulating real-life conditions, we make the following basic hypotheses, each of which is properly justified.
+\begin{itemize}
+	\item For the purpose of the quantification of the disaster index, which highlights the degree of harm caused by different disasters, it is assumed that the same type of disaster causes the same amount of damage in different countries or different regions.
+	\item It is assumed that all measure rankings in the Disaster Resilience Decision Model are equal around the world in order for the model to be applied worldwide, and if more detail is desired, measures can be ranked according to local realities.
+	\item In order to make the data collection and processing easier, it is assumed that in the question of whether an insurance company covers a particular area, the area is studied in terms of the country. In actuality, the relevant data for a specific area will be used.
+	\item It is assumed that the arbitrarily selected areas where extreme weather occurs are in our sample when demonstrating the Underwriting Risk Assessment Model. This is because, in actuality, the sample capacity will be very large, essentially covering the areas that we might choose to use to demonstrate the Underwriting Risk Assessment Model.
+	\item For ease of interpretation, it is assumed that all places in the article where the FCE method is applied to construct a rubric rating for any of the evaluation factors have only three ratings: high, medium and low. In practice, more grades can be used to provide a more detailed rating of the evaluation object.
+\end{itemize}
+
+\section{Notations}
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=16cm]{t3.png}
+	\caption*{}
+\end{figure}
+\section{Solution to Problem 1}
+We have collected data from 20 countries on factors related to insurance company underwriting and generated a score evaluation system through the algorithm utilized in this model. Based on this system, we can score any country or region of the world, as long as we know the weather and economic conditions of that country or region, to help insurance companies make decisions.
+	\subsection{Data Collection}
+We randomly collected data from websites on the number of extreme natural disasters of various types that will occur in 2022 in twenty countries, such as China, the United States, Australia, South Africa, Spain, and so on, as well as the country's GDP for that year. They were used to quantify the two main factors that insurers cover: weather conditions and economic levels. The weather environment factor includes the frequency of droughts, floods, storms, earthquakes, etc. in that year.
+	\subsection{Underwriting Risk Assessment Model}
+\subsubsection{Hierarchical Analysis for Weather Environmental Factors}
+Since the weather environment factor consists of various aspects such as drought, flood, storm, etc., we choose the hierarchical analysis method to weight the various scenarios in the weather environment factor, such as \textbf{Figure 1}.
+\\
+\\
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=17cm]{sort.png}
+	\caption{Classification of Weather Environmental Factors}
+\end{figure}
+\\
+\\
+The comparison matrix, \textbf{Figure 2}, was first obtained based on the extent of damage caused by the six factors, and the values in the matrix indicate the proportionality of the magnitude of damage between the two sites.\\
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=12cm]{compare.png}
+	\caption{Comparison Matrix} 
+\end{figure}
+This comparison matrix is then subjected to a consistency test, and if the consistency test fails, it means that the matrix needs to be corrected.
+\\
+\\
+Step 1: Calculate the consistency indicator CI.\\
+$$C I=\frac{\lambda_{\max }-n}{n-1}$$\\
+Step 2: Look up the table to get the 6th order average random consistency index RI = 1.26.\\
+Step 3: Calculate the consistency ratio.\\
+$$C R=\frac{C I}{R I}$$\\
+This comparison matrix is then subjected to a consistency test, i.e. comparing whether the CR is less than 0.1, if the consistency test is not passed, it means that the matrix needs to be corrected.
+%Here is a programme we used as follow.\\
+%\textbf{\textcolor[rgb]{0.98,0.00,0.00}{Input matlab source:}}
+%\lstinputlisting[language=Matlab]{./code/weather.m}\\
+The results show that our comparison matrix passes the consistency test. \\
+Finally, each factor weight was calculated by arithmetic averaging. \\
+Assuming that the comparison matrix is: \\
+$$
+A=\left[\begin{array}{cccc}
+	a_{11} & a_{12} & \cdots & a_{1 n} \\
+	a_{21} & a_{22} & \cdots & a_{2 n} \\
+	\vdots & \vdots & \ddots & \vdots \\
+	a_{n 1} & a_{n 2} & \cdots & a_{n n}
+\end{array}\right]
+$$
+The weight vector is then obtained by arithmetic averaging:
+$$
+\omega_i=\frac{1}{n} \sum_{j=1}^n \frac{a_{i j}}{\sum_{k=1}^n a_{k j}}
+$$
+%
+%\textbf{\textcolor[rgb]{0.98,0.00,0.00}{Input matlab source:}}
+%\lstinputlisting[language=Matlab]{./code/quanzhong.m}\par
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=12cm]{quanzhong.png}
+	\caption{Weighting of Various Factors in the Weather Environment} 
+\end{figure}
+\subsubsection{Analysis of the TOPSIS algorithm}
+For the risk assessment of underwriting there are two relative factors, the weather environment and the economic situation, in order to analyze them using the TOPSIS algorithm, the following steps are carried out:\\
+First, the six factors of weather environment with weights are normalized and combined with the collected measure of economic situation, GDP, to obtain a normalized matrix (after the data is normalized it is indicated that the greater the value of each factor, the more deserving the place is to be underwritten and the lower the risk is). \\
+Normalization processing formula:           $max-x$\\
+Next, the normalization matrix is normalized to eliminate the effect of the scale of each indicator. \\
+Assume that the normalization matrix is: 
+$$
+X=\left[\begin{array}{cccc}
+	x_{11} & x_{12} & \cdots & x_{1 n} \\
+	x_{21} & x_{22} & \cdots & x_{2 n} \\
+	\vdots & \vdots & \ddots & \vdots \\
+	x_{n 1} & x_{n 2} & \cdots & x_{n n}
+\end{array}\right]
+$$
+Then, for its normalized matrix denoted as $Z$,each element in $Z$:
+$$
+z_{i j}=x_{i j} / \sqrt{\sum_{i=1}^n x_{i j}^2}
+$$
+Then, find the optimal and the worst option among the limited options, and calculate the distance between each factor and the optimal and worst options respectively to derive the corresponding scores of the evaluation object \\
+For the obtained normalization matrix $Z$\\
+Define the maximum value:
+$$
+\begin{aligned}
+	Z^{+} & =\left(Z_1^{+}, Z_2^{+}, \cdots, Z_m^{+}\right) \\
+	& =\left(\max \left\{z_{11}, z_{21}, \cdots, z_{n 1}\right\}, \max \left\{z_{12}, z_{22}, \cdots, z_{n 2}\right\}, \cdots, \max \left\{z_{1 m}, z_{2 m}, \cdots, z_{n m}\right\}\right)
+\end{aligned}
+$$
+Defining the minimum value:
+$$
+\begin{aligned}
+	Z^{-} & =\left(Z_1^{-}, Z_2^{-}, \cdots, Z_m^{-}\right) \\
+	& =\left(\min \left\{z_{11}, z_{21}, \cdots, z_{n 1}\right\}, \min \left\{z_{12}, z_{22}, \cdots, z_{n 2}\right\}, \cdots, \min \left\{z_{1 m}, z_{2 m}, \cdots, z_{n m}\right\}\right)
+\end{aligned}
+$$
+Define the distance of the ith (i=1,2,...,n) evaluation object from the maximum value as:
+$
+ D_i^{+}=\sqrt{\sum_{j=1}^m \boldsymbol{\omega}_j\left(Z_j^{+}-z_{i j}\right)^2} 
+$
+\\
+Define the distance of the ith (i=1,2,...,n) evaluation object from the minimum value as:
+$
+ D_i^{-}=\sqrt{\sum_{j=1}^m \boldsymbol{\omega}_j\left(Z_j^{-}-z_{i j}\right)^2}
+$
+\\
+The ith (i=1,2,...,n) evaluation subject scores:  $S_i=\frac{D_i^{-}}{D_i^{+}+D_i^{-}}$
+\\
+It is clear that $0 \leq S_i \leq 1$,and the larger $S_i$ the smaller $D_i^{+}$, i.e., the closer to the maximum.
+\\
+%\textbf{\textcolor[rgb]{0.98,0.00,0.00}{Input matlab source:}}
+%\lstinputlisting[language=Matlab]{./code/Standardization.m}\par
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=7cm]{pinlv.png}
+	\caption{Histogram of Frequency Distribution of Country Scores} 
+\end{figure}
+Finally, a histogram of frequency distribution Figure 4 was created with scores of 20 countries as a continuous variable and curve fitting was performed. After Q-Q plot test and Sharpiro-Wilk test, it was found that the curve does not satisfy the normal distribution property.
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=14cm]{jianyan.png}
+	\caption{Normality Test} 
+\end{figure}
+\\
+\subsection{Recommendations for Decision-making}
+We finally obtained the scores of the 20 countries in the sample and ranked them from highest to lowest to obtain Figure 6.When an insurance company makes a decision on whether to carry out insurance as a business in a certain place, it can obtain a score through the same data processing and calculations by knowing the local weather conditions and economic conditions. At the same time, the insurance company chooses two places as the decision point through ranking in advance, for example, the two places of $25\%$ and $75\%$ of the total number of people in Figure 6. Above the former, the city has a high score, which means that the risk is small, and is recorded as a recommended underwriting range, which is worthwhile for the insurance company to underwrite; below the latter, the city has a low score, which means that the risk is high, and is recorded as a non-recommended underwriting interval, which is not worthwhile for the insurance company to underwrite; and in between, it is recorded as a risk underwriting interval which is characterized by a large customer base although there is a certain level of risk, etc., and the decision to take a risk can be made after considering a number of factors, such as the amount of the owner's premiums. Take a chance. If you are not sure, you can try to buy a coverage in the form of reinsurance.\\
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=16cm]{paiming.png}
+	\caption{Rankings} 
+\end{figure}
+\subsection{Two Examples of the Model}
+We have selected two countries, Brazil and Japan, and we can see from Figure 6 that Brazil belongs to the risk underwriting interval, and the insurance company can try to take the risk of underwriting it based on other circumstances; Japan belongs to the non-recommended underwriting interval, so it is not recommended that the insurance company should guarantee it here.
+\\
+\section{Solution to Problem 2}
+\subsection{Disaster Risk Assessment Model}
+In order to address the question of whether real estate developers will develop properties in a certain area, we consider places that have been severely affected by the disaster, i.e., places where real estate developers will have a lower probability of choosing to build, Figure 7.Below is a graph of the damage table for our sample of twenty cities:
+\\
+\\
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=12cm]{p1.png}
+	\caption{} 
+\end{figure}
+We use a simple color classification based on the frequency of damage, with darker colors being areas with more damage and lighter colors being areas with less damage.The darker colors are the areas that have been affected more often, and the lighter colors are the areas that have been affected less often.On this basis, we followed the disaster hazard index weights obtained in the first problem using hierarchical analysis.The Topsis Model was also used to obtain the corresponding score for a given area.The sample still uses the available data for the twenty cities, and the sequential calculation of their scores as in Figure 8:
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=12cm]{form.png}
+	\caption{}
+\end{figure}
+\\
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=12cm]{p2.png}
+	\caption{Normality Test}
+\end{figure}
+\\
+We still did Shapiro-Wilk test and Q-Q plot test on them with SPSS on this basis and got the results as Figure 9 and Figure 10:
+\\
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=12cm]{p3.png}
+	\caption{}
+\end{figure}
+\\
+Since the Significance value in the Shapiro-Wilk test is greater than 0.05, the regional disaster distribution conforms to the normal distribution, accordingly its corresponding normal distribution is plotted. Accordingly, the corresponding normal distribution graph is drawn as Figure 11:
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=12cm]{p4.png}
+	\caption{}\label{k}
+\end{figure}
+\\
+That is, it conforms to the law of normal distribution, and we assume that when the score is distributed below eighty percent, as a real estate agent I decide to choose this place to build our property.I decided as a realtor to choose this location to build our property, which is shown in green in Figure 12:\\
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=12cm]{p5.png}
+	\caption{}\label{l}
+\end{figure}
+\subsection{Disaster Resilience Decision Model}
+In addition, in order to help real estate developers to determine whether or not to proceed with the construction of a house in a certain place through the evaluation of the cost of each disaster-resistant material, or with the establishment of a disaster-resistant level of construction in the same way as the original financial success rate.We applied the FCE to determine the cost of materials needed for a given building to withstand different material costs required to withstand different types of disasters.\\
+FCE (Fuzzy Comprehensive Evaluation Method) is based on fuzzy mathematics and applies the principle of fuzzy relation Synthesis principle, some unclear boundaries, not easy to quantify the factors according to the theory of affiliation into quantitative factors, and carry out a comprehensive evaluation of the A method of comprehensive evaluation.This type of method is characterized by clear and systematic results.\\
+The FCE modeling is divided into the following steps:\\
+(1)Establishing a collection of evaluation factors.
+$$
+\mathrm{U}=\left\{\mathrm{u}_1, \mathrm{u}_2, \cdots, \mathrm{u}_{\mathrm{m}}\right\}
+$$
+(2)Constructing a rubric collection.
+$$
+\mathrm{V}=\left\{\mathrm{v}_1, \mathrm{v}_2, \cdots, \mathrm{v}_{\mathrm{v}}\right\}
+$$
+(3)Determining the Membership Function.\\
+Here we collect data on the prices of different grades of materials in the country and divide the Membership Function on this basis.Because the three levels of each product are divided basis, the first set of data is used here as an example.From the Membership Function, its affiliation row vector is determined as shown in Fig:\\
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}{0.325\linewidth}
+		\centering
+		\includegraphics[width=0.9\linewidth]{p6.png}
+		\caption{}
+		\label{m}%文中引用该图片代号
+	\end{subfigure}
+	\centering
+	\begin{subfigure}{0.325\linewidth}
+		\centering
+		\includegraphics[width=0.9\linewidth]{p7.png}
+		\caption{}
+		\label{n}%文中引用该图片代号
+	\end{subfigure}
+	\centering
+	\begin{subfigure}{0.325\linewidth}
+		\centering
+		\includegraphics[width=0.9\linewidth]{p8.png}
+		\caption{}
+		\label{o}%文中引用该图片代号
+	\end{subfigure}
+	\caption{}
+	
+\end{figure}
+
+
+(4)Determine the affiliation matrix.
+$$
+R=\left[\begin{array}{cccc}
+	r_{11} & r_{12} & \cdots & r_{1 n} \\
+	r_{21} & r_{22} & \cdots & r_{2 n} \\
+	\cdots & \cdots & \cdots & \cdots \\
+	r_{m 1} & r_{m 2} & \cdots & r_{m n}
+\end{array}\right]
+$$
+In the above equation, R is a fuzzy relationship from the evaluation factor domain U to the rubric domain V:$$\mu_R\left(u_i,v_i\right)=r_{ij}$$ denotes the degree of affiliation of the factor $u_i$ to the rubric level $v_i$.
+(5)Determine the weight vector A based on local disaster protection needs.
+$$
+A=\left(a_1, a_2, \ldots, a_n\right)
+$$
+In the above equation, $a_i, \quad i=1,2, \cdots, m$ are the weights of the ith factor
+(6)Calculate the comprehensive evaluation result, according to the principle of maximum affiliation, select the largest $b_j, \quad i=1,2, \cdots, n$ as the comprehensive evaluation result.
+ $$\mathrm{B}=\mathrm{A} \times \mathrm{R}$$
+In the above equation, B is the grade fuzzy subset obtained from the evaluation; A is the weight vector; R is the evaluation matrix.\\
+The structure is illustrated below:\\
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=16cm]{p9.png}
+	\caption{}
+\end{figure}
+Through this modeling, a hierarchical fuzzy subset is finally obtained by combining the local disaster propensity weights to get quantitative data.We help developers make decisions about how to build here in a way that makes sense by determining the total cost rating of a developer's disaster prevention program.\\
+\subsection{Willingness-to-pay Model for Disaster Resilience}
+In addition, we also selected the natural disaster of earthquake, which is very destructive and seriously affects people's life, to reflect people's willingness to increase the cost of housing construction to improve the toughness level of housing. In this process, we set the toughness level of the house as $n$, the earthquake level as $j$, the earthquake damage as $C_n$, according to the intensity of the earthquake is divided into rare earthquakes $P_1$, fortified earthquakes $P_2$, and did not occur in the earthquake $P_3$, and at the same time, the introduction of the Prospect Theory of economics to analyze the magnitude of the degree of willingness of the different houses under the toughness level: \\
+Prospect Theory\\
+In the process of applying Prospect Theory, we first consider that the degree of willingness to express the decision maker is positively correlated with the degree of loss aversion, but not completely linearly correlated, so the introduction of Prospect Theory, which is designed to introduce the decision maker's irrational value of the feeling of the factor impact. \\
+Prospect Theory considers the irrational value feeling factor influence of decision makers from two main aspects. \\
+Risk-seeking attitude towards losses \\
+Risk averse attitude towards profit \\
+As shown in the figure: 
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=12cm]{p10.png}
+	\caption{}\label{sssb}
+\end{figure}
+\\
+Its value function is:
+\[
+v\left( x \right) =\begin{cases} x^\alpha,&\text{if $x\ge 0$ }\\
+   	-\lambda(-x)^{\beta},&\text{if j<0}
+\end{cases}
+\]
+
+
+From the data, $\alpha$ \cite{1}is not equal to $\beta$\cite{2}, $\alpha<\beta$, which takes values between 0.3 and 1.0, and $\lambda$ takes values between 0.3 and 2.5. Here, since the earthquake loss is pure risk, it is only necessary to choose the value function for the case of $x<0$, where we take the values of $\beta=0.88 $and $\lambda=2.25$.\cite{3}\\
+Another core assumption of Prospect Theory is the weighting function: \\
+In order to make the most favorable function, the decision maker should evaluate the value of each option before comparing all options to arrive at the final value function\\
+Therefore, the final value ($V$) is determined by the value function ($v$) and the weighting function ($\omega$).
+The value function ($v$) takes the actual value of the outcome as the independent variable\\
+The weight function ($\omega$) takes the probability of the outcome as the independent variable \\
+The decision weight function states that for any probability $0<P<1 \omega(P)+\omega(1-P)<1$ is "sub-deterministic", meaning that the sum of the weights of the probabilities of occurrence of complementary events is less than 1, and mutation occurs when P is 0 and 1.
+The expression is:
+$$
+\omega \left( P \right) =\frac{P^r}{\left[ p^r+\left( 1-p \right) ^r \right] ^{\frac{1}{r}}},0.5<r<1
+$$
+Let willingness to pay be WTP\cite{4}\\
+$$
+V(n)=\omega\left(P_1\right) v\left(-C_{n, 1}\right)+\omega\left(P_2\right) v\left(-C_{n, 2}\right)+\omega\left(P_3\right) v\left(-C_{n, 3}\right)
+$$
+$$V\left(-W T P_n\right)=V_0-V_j$$
+Let the average housing loss be $CM_{n,j}$ based on the material described in the material for different levels of toughness of the houses under different levels of earthquake damage as follows\\
+At the same time, according to the "Building Seismic Resilience Evaluation Standard" (GB/T38591-2020 requirements, it is assumed that zero-star and one-star buildings will produce losses under both fortified earthquakes and rare earthquakes and the upper bound of the loss index will remain unchanged under the two types of earthquakes, whereas two-star and three-star buildings will produce disaster losses only under rare earthquakes.\\
+It is assumed that the constructor, from a profit maximization perspective, will meet the building seismic toughness rating requirements at the lowest cost.Therefore, the calculation of each seismic loss for each toughness class of building uses the upper bound of the loss indicator for that class.\\
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=12cm]{f.png}
+	\caption{}\label{u}
+\end{figure}
+From this, the following table of damage to houses under different earthquake magnitudes was extrapolated:
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=12cm]{f2.png}
+	\caption{}\label{r}
+\end{figure}
+\\
+\\
+Let the cost of casualties be $CP$ and the density of people be $d$, and calculate the compensation by multiplying per capita disposable income $I$ by the remaining life expectancy of 20 years to represent the cost of death, and the average medical cost of earthquakes $H$ to represent the cost of injuries.
+$$
+CP_{n,j}=\gamma_{H_{n,j}}\times d\times H+\gamma_{D_{n,j}}\times d\times I \times 20
+$$
+Final earthquake disaster losses:
+$$
+CD_{n,j}=CM_{n,j}+CP_{n,j}
+$$
+
+The relationship table between residents' willingness value and housing toughness grade is obtained as shown in the Table 2:
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=6cm]{t2.png}
+	\caption*{}
+\end{figure}
+\\
+This data suggests that as housing resilience ratings increase, the trend of residents' willingness to pay increases, and developers are justified in enhancing the disaster-resistant properties of their homes, both in terms of market and humanitarian considerations.
+\section{Solution to Problem 3}
+\subsection{Evaluation Criteria}
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=12cm]{pingjia.png}
+	\caption{Estimation} \label{fig:aaaaaaa}
+\end{figure}
+ In order to judge the value of the building, we we looked for 6 primary evaluation factors and 12 secondary evaluation factors as an evaluation system.
+\subsection{Building Value Appraisal Model}
+Building Value Appraisal Model was built by applying the FCE method twice.
+The first time (using B1 as an example):\\
+First, the evaluation level of B1, determined by C1, C2, C3, that is, they constitute the set of evaluation factors; second, according to the high, medium and low three levels to determine the set of rubrics; immediately after, to determine the C1, C2, C3 pairs of affiliation to the three levels, respectively, to determine the affiliation matrix; after that, through the hierarchical analysis method, the expert survey method to determine the weights of the three evaluation factors of C1, C2, C3, determine the weight vector; and finally calculated, the affiliation degree of B1 in the high, medium and low grades was obtained.\\
+The second time:\\
+ B1 to B6 constitute the set of evaluation factors of A. The affiliation degrees of B1 to B6 in the three grades again constitute an affiliation matrix, and then the weight vectors of the evaluation factors are obtained again by the expert survey method or the binary comparison method, and finally, the affiliation degrees of the evaluated building A in the three grades of high, medium and low are obtained. According to the principle of maximum affiliation, the grade with the largest affiliation is selected as the value grade of the building.
+\subsection{Recommendations for Decision-making}
+As a community leader, when a building is selected, its final value rating is obtained by synthesizing the data collected through its various levels of evaluation metrics.If the rating is low, the building is not recommended for retention;If the rating is intermediate, it is recommended to be retained and some measures taken to protect it;If the rating is high, the best measures are taken to focus on the protection of the building.Of course, the actual situation can be classified into more detailed levels so as to adopt more distinctive measures for the protection of different buildings.
+\section{Letter of Recommendations}
+Below is a letter written by me about insights related to a prized landmark in a particular neighborhood.
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{letter.png}
+	\caption*{}
+\end{figure}
+
+\section{Model Evaluation and Further Discussion}
+A total of four mathematical models are developed throughout the article:Underwriting Risk Assessment Model, Disaster Resilience Decision Model,Willingness-to-pay Model for Disaster Resilience, Building Value Appraisal Model.Although the model has been able to solve many problems in the hypothetical case, it still has some shortcomings.\\
+\textbf{Strength}
+\begin{itemize}
+\item 
+We use the AHP method to translate human judgment into a two-by-two comparison of the importance of a number of factors.We translate difficult-to-quantify qualitative judgments into actionable comparisons of importance above.In many cases, decision makers can use the AHP directly for decision making.It greatly improves the validity, reliability and feasibility of decisions.The whole process embodies the basic features of human decision-making thinking, i.e., decomposition, judgment, and synthesis.Thus it overcomes the other methods' shortcomings of avoiding the disadvantage of subjective judgment of the decision maker.
+\item 
+FCE has been introduced, which can reflect the relative importance between the evaluation indicators and make the comprehensive evaluation results more scientific and reasonable.It can effectively synthesize many different evaluation indicators, making the comprehensive evaluation results more accurate and comprehensive.It can also effectively cope with a variety of fuzzy and uncertain information, making the comprehensive evaluation results more stable and reliable.
+\item 
+Prospect theory was introduced, which is descriptive rather than indicative - it aims to explain phenomena rather than analyze how best to make decisions, making idealized data relationships more practical.
+\end{itemize}
+\textbf{Weakness}
+
+\begin{itemize}
+\item 
+We have only modeled the evaluation category, which is using existing data as an analysis, but is not predictive.If there is enough time, we would like to introduce time series in future refinements.
+\item 
+The scores based on Topsis Model are actually based on relative comparisons of existing data, and still require a large amount of data support when applied to other scenarios, which puts a limit on the applicability of the model.
+\end{itemize}
+
+
+
+\begin{thebibliography}{99}
+	
+\bibitem{1}CAMERER C F, TECK-HUA H. Violations of the betweenness axiom and nonlinearity in probability [J]. Journal of Risk and Uncertainty, 1994, 8(2):167-196.
+\bibitem{2}ONZALEZ R, WU G. On the shape of the probability weighting function [J]. Cognitive Psychology,1999, 38(1):129-166.
+\bibitem{3}NILSSON H, RIESKAMP J, WAGENMAKERS E J. Hierarchical Bayesian parameter estimation for cumulative prospect theory [J]. Journal of Mathematical Ps ychology, 2011, 55(1):84-93.
+\bibitem{4} WANG Qiuyi,WU Jing,PAN Peng. Willingness to pay for seismic toughness of residential buildings by residential households[J]. Journal of Tsinghua University (Natural Science Edition),2021,61(06):582-590.
+
+\end{thebibliography}
+
+
+\end{document}
+
+%This  system can be used for many types of airplanes, and it also
+%solves the interference during  the procedure of the boarding
+%airplane,as described above we can get to the  optimization\cite{2}
+%boarding time.We also know that all the service is automate.
+%
+%Balancing the cost of the cost and the benefit, it will bring in
+%more convenient  for airport and passengers.It also saves many\cite{1}
+%human resources for the airline. \item \textbf{}

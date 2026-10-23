@@ -1,0 +1,11 @@
+描述性统计
+     SPSS在进行相关性分析前的描述性统计
+
+QQ图
+     SPSS生成的QQ图
+
+Fit_Data
+     进行JB检验所需的数据文件
+
+JB_Test
+     JB检验相关代码以及Spearman相关系数代码 

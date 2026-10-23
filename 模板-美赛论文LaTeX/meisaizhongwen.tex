@@ -1,0 +1,492 @@
+\documentclass{mcmthesis}
+\mcmsetup{CTeX = false,   % 使用 CTeX 套装时，设置为 true
+        tcn = 2416200, problem = E,
+        sheet = true, titleinsheet = true, keywordsinsheet = true,
+        titlepage = false, abstract = true}
+% \usepackage{newtxtext,newtxmath}
+\usepackage{palatino}
+\usepackage{lipsum}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{tabularray}
+\usepackage{color}
+\usepackage{ctex}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{float} 
+\usepackage{subcaption}
+
+% \usepackage{amsmath}
+% \usepackage{hyperref}
+\title{My Dear Son Wentang Meng}
+
+\begin{document}
+\begin{abstract}
+\par
+面对当下时代自然灾害与极端灾害频发的情况，赛题从保险行业，建筑制造行业，与重要建筑保护抉择和措施问题，相互联系层层递进。对于解决保险行业对于地区承保风险的评估，从而选取地区的问题，我们首先运用层次分析法，依据不同灾难的危害程度建立判断矩阵，得到不同灾害危害程度的矩阵。在此基础上，假设保险公司选取二十个地区，运用Topsis模型（优劣解距离法），再加上各个地区经济水准情况，得到二十个地区的得分并且排名。选取前百分之20为推荐承保区间，中间百分之60为风险承保区间，可通过再承保来分担风险，最后百分之20为仅通过灾害和总体经济水准评估的不推荐承保区间，从而回答了第一个问题。\par
+对于建筑制造行业面对极端天气与自然灾害频发的情况下，我们仍然选用Topsis模型评估对比了二十个地区的灾难严重程度指数，灾难的严重指数呈正态分布选取灾难指数分布在百分之80以下地区，以此作为选择建造的地区。此外，针对提高抗灾等级依据开发商提供的抗灾材料报价，依据模糊综合评价模型，确立与灾害类型措施相关的评语因素集合、与解决措施相关的评语集合和依照层次分析法结合当地受灾侧重得到的权重集合，最终得到反映抗灾能力的等级模糊子集，以此辅助开发商决策。最后我们考虑以地震这一严重自然灾害为例，用灾害损失侧面反映支付意愿，并引入前景理论，以考虑非理想因素对决策者的影响，探究居民支付意愿与韧性等级即抗灾等级的关系。得出结论，居民有明显意愿为建筑韧性等级买单。证明了提高抗灾属性对于市场和人道方面都有着可行性。\par
+为回答评估重要建筑历史价值问题，我们仍然选择使用模糊综合评价，分级建立评语因素集合和评语集合，将难以量化的重要建筑的经济，历史，文化，社区等意义量化，从而得到一个反映建筑物综合价值的得分，以辅助社区决策者更好的指定保护措施。\par
+在问题的最后，我们综合运用保险评估与建筑物综合价值评估模型，对伊拉克的古巴比伦遗址进行分析评估，并得出保护必要性的结论，在此基础上写信为其分析保护方案，时间安排等措施，以更好地保护重要的历史文化建筑。\par
+\begin{keywords}
+Topsis;模糊综合评价;层次分析法;前景理论
+\end{keywords}
+\end{abstract}
+\maketitle
+
+ \tableofcontents
+ \newpage
+
+
+
+%%\section为一级标题，\subsection为二级标题 \subsubsection为三级标题
+
+\section{Introduction}
+
+\subsection{Problem Background}
+近年来，世界频发的极端天气对财产所有者造成了巨大的经济损失，也使得保险公司的理赔费用大大提高。因此，保险公司不断提高那些与天气有关事故所导致的财产保险费用，并且根据不同地区的经济、地理和天气因素改变他们在当地的的承保方式以及是否对当地进行承保。继而由此衍生出一个巨大的世界性问题：世界保险保障缺口开始不断扩大。究其根本原因在于保险公司的盈利能力和财产所有者的经济承受能力出现了危机。所以如何依据某一个地区经济、地理和天气等因素进行各方面的风险评估便具有了重要意义。
+\subsection{Restatement of the Problem}
+\textbf{Considering} the background information and restricted conditions 
+identified in the problem statement, we need to solve the following
+problems:
+\begin{itemize}
+	\item 
+	问题一：保险公司在什么条件下会承保？保险公司在什么条件下会去冒险？业主可以使用什么方式影响来影响这一决定？
+	\item 
+	问题二：如何调整您的保险模式，以评估社区和房地产开发商在何处、如何以及是否在某些地点进行建设？
+	\item 
+	问题三：在一个不适宜保险模式的地区，如何确定某一个建筑物因其文化、历史、经济或社区意义而应得到保存以及若值得保存则应得到多大程度的保护？
+	\item 
+	问题四：选择一个受极端天气影响严重的地标。运用您的保险和保护模式来评估该地标价值，为该地社区写一封建议信。
+\end{itemize}
+\subsection{Analysis of the Problem}
+\begin{itemize}
+	\item 
+	问题一：保险公司是否承保取决于多个因素，例如正向因素，当地的经济水准；负向因素，极端的天气环境等。同时还要对客户群体质量进行多方面的评估，才能完成决策。我们将随机挑选多个地区，收集当地各类自然灾害、经济发展等因素相关数据。首先运用层次分析法将各类自然灾害一年中出现的频次按照危害性进行加权处理，然后运用Topsis算法，将所有因素的数据进行正向化标准化处理后，进行计算得分，建立评估指标体系。该体系按照分数这一变量进行连续性概率分布，对该体系进行Q-Q图和Sharpiro-wilk检验，探究其是否满足正态分布性质，然后选择一定方法得出相关预测结果，确定地区得分满足何种条件保险公司可以承保，甚至可以冒险一试。将该思路命名为\textbf{承保风险评估模型}。除此以外，客户群体，即业主也是一个额外影响保险公司的是否承担决定的因素，比如破财消灾，需要考虑到模型里。
+	\item 
+	问题二：社区和房地产开发商若要确定如何以及在何处建设和发展房地产，既需要评估当地的风险指数，还要考虑社区和房地产开发商愿意额外投入多少资金去加强房屋的抗灾能力，以及居民对住宅因抗灾能力提升而额外支付一定费用的意愿情况，从而使开发商达到获利的目的。风险指数可以通过问题一所建立的模型进行改进得到\textbf{受灾风险评估模型}，而抗灾能力的提升以及居民的意愿则需要建立一个\textbf{抗灾能力决策模型}和一个\textbf{居民抗灾支付意愿模型}。通过这三个个方面，使决策者更好地作出决定。抗灾能力决策模型的建立：先收集开发商在当地为了加强房屋抗灾能力所能运用各种措施的成本。其中每种措施，又可以按照实施材料、实施效果的不同分成该种措施的高级、中级和低级措施，价格也由高到低。由于在不同地区，因气候地理等差异所运用的主要措施和次要措施会有所差异，且每种措施只有三个等级，故我们选择模糊综合评价的方法，最终计算出该开发商额外投入的钱在加强所选地区房屋抗灾能力这个决策中，综合来说属于高级、中级还是低级措施。因为措施等级的高低，意味着此处的居民在居住该房屋时安全度的高低，即高级措施意味着居民住得安全，则建议开发商在此开发，反之则不建议。也许你会说，开发商在增强房屋抗灾能力这一方面额外投入的钱越多，就意味着措施越高级，所以应该额外多投入钱。实则不然，开发商为了获利，额外投入的钱有一大部分是出自居民本身。额外投入的钱太多，会使居民支付的意愿下降，使得无人购买房屋。所以开发商究竟额外投入多少钱用来提升楼房抗灾能力，取决于居民的抗灾支付意愿。所以，我们搜集数据，做出了居民抗灾支付意愿模型。
+	\item 
+	问题三：对于一个已经不适宜保险的地区，决定该地区某个建筑物是否应该得到保存以及多大程度的保护。该问题属于一个决策问题，需要从这个建筑物的价值出发，对这个建筑物的价值进行评级。建筑物的价值可以从多个指标的评级，然后运用模糊综合的方法将这些不易定量的因素根据隶属度理论转化为定量因素，中间运用层次分析法、专家调查法等方法计算评价指标的权重，最终经过数据处理得到这个建筑物的价值等级，建立起一个\textbf{建筑保护模型}。
+	\item
+	问题四：选择一个历史地标，搜集该地相应数据，通过建立起来的承保风险评估模型和建筑保护模型，对此处历史地标进行价值分析。给这个地标的发展提出一定建议。
+\end{itemize}
+\section{Assumptions and Justifications}
+ To simplify the given problems and modify it more appropriate for simulating real-life conditions, we make the following basic hypotheses, each of which is properly justified.
+\begin{itemize}
+	\item 为了灾害指数的量化，凸显不同灾害的危害程度，我们假设同类型的灾害在不同国家或不同地区造成的损害是一样的。
+	\item 假设抗灾能力决策模型中所有措施等级划分在世界各地都相等，以便模型在世界范围内应用，如果想要更为细致，可以按当地实际情况划分措施等级。
+	\item 为了使数据搜集处理方便，假设在保险公司对某地是否承保问题中，某地全部是以国家为研究单位的。实际情况中，会使用具体地区的相关数据。
+	\item 假设演示承保风险评估型模型时，任意选取的发生极端天气的地区就在我们的样本中。因为，实际情况中，样本容量会非常大，基本涵盖了我们可能选择用来演示承保风险评估型模型的地区。
+	\item 为了解释方便，假设文章中所有运用模糊综合评价法的地方，对任一评价因素构建评语等级时，只有高级、中级和低级三个等级。实际情况中，可以采用更多的等级来对评价对象进行更细致的评级。
+
+\end{itemize}
+
+
+\section{Notations}
+ We list the symbols and notations used in this paper in Table 1.
+\begin{table}
+	\centering
+	\caption{ Symbols Definition}
+	\begin{tblr}{
+			column{9} = {c},
+			column{13} = {c},
+			hline{1-2,12} = {-}{},
+		}
+		&  &  &  &  &  &  &  & Symbols &  &  &  & Definition &  &  &  &  &  &  &  &  \\
+		&  &  &  &  &  &  &  & CI      &  &  &  & 一致性指标       &  &  &  &  &  &  &  &  \\
+		&  &  &  &  &  &  &  & $\lambda_{\max }$ &  &  &  & 矩阵特征值         &  &  &  &  &  &  &  &  \\
+		&  &  &  &  &  &  &  & n       &  &  &  & 矩阵阶数         &  &  &  &  &  &  &  &  \\
+		&  &  &  &  &  &  &  & RI       &  &  &  & 平均随机一致性指标        &  &  &  &  &  &  &  &  \\
+		&  &  &  &  &  &  &  & $\omega_i$      &  &  &  & 权重    &  &  &  &  &  &  &  &  \\
+		&  &  &  &  &  &  &  & d       &  &  &  & sadds      &  &  &  &  &  &  &  &  \\
+		&  &  &  &  &  &  &  & q       &  &  &  & asds       &  &  &  &  &  &  &  &  \\
+		&  &  &  &  &  &  &  & w       &  &  &  & sdasd      &  &  &  &  &  &  &  &  \\
+		&  &  &  &  &  &  &  & e       &  &  &  & asdad      &  &  &  &  &  &  &  &  \\
+		&  &  &  &  &  &  &  & y       &  &  &  & fgh        &  &  &  &  &  &  &  &  
+	\end{tblr}
+\end{table}
+\section{Solution to Problem 1}
+我们收集了20个国家与保险公司承保相关因素的数据，通过本模型运用的算法，生成一个分数评价体系。基于该体系，我们只要了解世界任何一个国家或地区的天气和经济情况，便可以打分，帮助保险公司决策。
+	\subsection{Data Collection}
+我们从相关网站上随机收集了二十个国家，例如：中国，美国，澳大利亚，南非，西班牙等等，于2022年遭遇各种类型极端自然灾害的次数，以及该国当年的GDP数据，来量化保险公司承保的两个主要因素：天气环境、经济水平。其中天气环境因素包含了了当年度该国干旱、洪涝、风暴、地震等发生频次。
+	\subsection{模型建立}
+\subsubsection{对天气环境因素用层次分析法进行分析}
+由于天气环境因素由干旱、洪涝、风暴等多方面构成，所以我们选择层次分析法，对天气环境因素中的各种情况进行加权处理，例如Figure 1。\par
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=8cm]{sort.png}
+	\caption{sort} \label{a}
+\end{figure}
+首先根据6种因素造成破坏的程度得到Figure 2这一比较矩阵，矩阵中的值表示这两地破坏程度大小的比例关系。\par
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=12cm]{compare.png}
+	\caption{比较矩阵} \label{b}
+\end{figure}
+然后对该比较矩阵进行一致性检验，若一致性检验不通过，意味着该矩阵需要修正。\par
+第一步：计算一致性指标CI\par
+$$C I=\frac{\lambda_{\max }-n}{n-1}$$\par
+第二步：查表得6阶平均随机一致性指标RI=1.26\par
+第三步：计算一致性比例\par
+$$C R=\frac{C I}{R I}$$\par
+然后对该比较矩阵进行一致性检验，即比较CR是否小于0.1，若一致性检验不通过，意味着该矩阵需要修正。\par
+Here is a programme we used as follow.\\
+\textbf{\textcolor[rgb]{0.98,0.00,0.00}{Input matlab source:}}
+\lstinputlisting[language=Matlab]{./code/weather.m}\par
+结果显示，我们的比较矩阵通过了一致性检验。\par
+最后，通过算术平均法计算得到每一种因素权重。\par
+假设比较矩阵为：\par
+$$
+A=\left[\begin{array}{cccc}
+	a_{11} & a_{12} & \cdots & a_{1 n} \\
+	a_{21} & a_{22} & \cdots & a_{2 n} \\
+	\vdots & \vdots & \ddots & \vdots \\
+	a_{n 1} & a_{n 2} & \cdots & a_{n n}
+\end{array}\right]
+$$\par
+则算数平均法求得权重向量为：
+$$
+\omega_i=\frac{1}{n} \sum_{j=1}^n \frac{a_{i j}}{\sum_{k=1}^n a_{k j}}
+$$
+
+\textbf{\textcolor[rgb]{0.98,0.00,0.00}{Input matlab source:}}
+\lstinputlisting[language=Matlab]{./code/quanzhong.m}\par
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=12cm]{quanzhong.png}
+	\caption{quanzhong} \label{c}
+\end{figure}
+\subsubsection{对天气环境与经济情况用TOPSIS算法进行进一步分析}
+对于承保的风险评估有两个相对的因素，天气环境与经济情况，为了使用TOPSIS算法进行分析，进行以下几个步骤：\par
+首先，将带有权重的天气环境的六个因素进行正向化处理，与收集到的经济情况的衡量值GDP结合得到正向化的矩阵(数据正向化之后表示，每一种因素值越大，说明该地越值得承保，风险越小)。\par
+正向化处理公式： $max-x$\par
+其次，将正向化矩阵标准化处理以消除各指标量纲的影响。\par
+假设正向化矩阵为：\par
+$$
+X=\left[\begin{array}{cccc}
+	x_{11} & x_{12} & \cdots & x_{1 n} \\
+	x_{21} & x_{22} & \cdots & x_{2 n} \\
+	\vdots & \vdots & \ddots & \vdots \\
+	x_{n 1} & x_{n 2} & \cdots & x_{n n}
+\end{array}\right]
+$$\par
+那么，对其标准化矩阵记为$Z$,$Z$中每一个元素有：\par
+$$
+z_{i j}=x_{i j} / \sqrt{\sum_{i=1}^n x_{i j}^2}
+$$\par
+然后，找到有限方案中的最优方案和最劣方案，分别计算各因素与最优方案和最劣方案间的距离得出评价对象的相应分数\par
+对于得到的标准化矩阵$Z$\par
+定义最大值
+$$
+\begin{aligned}
+	Z^{+} & =\left(Z_1^{+}, Z_2^{+}, \cdots, Z_m^{+}\right) \\
+	& =\left(\max \left\{z_{11}, z_{21}, \cdots, z_{n 1}\right\}, \max \left\{z_{12}, z_{22}, \cdots, z_{n 2}\right\}, \cdots, \max \left\{z_{1 m}, z_{2 m}, \cdots, z_{n m}\right\}\right)
+\end{aligned}
+$$
+\par
+定义最小值
+$$
+\begin{aligned}
+	Z^{-} & =\left(Z_1^{-}, Z_2^{-}, \cdots, Z_m^{-}\right) \\
+	& =\left(\min \left\{z_{11}, z_{21}, \cdots, z_{n 1}\right\}, \min \left\{z_{12}, z_{22}, \cdots, z_{n 2}\right\}, \cdots, \min \left\{z_{1 m}, z_{2 m}, \cdots, z_{n m}\right\}\right)
+\end{aligned}
+$$
+\par
+定义第i(i=1,2,…,n)个评价对象与最大值的距离
+$
+ D_i^{+}=\sqrt{\sum_{j=1}^m \boldsymbol{\omega}_j\left(Z_j^{+}-z_{i j}\right)^2} 
+$
+\par
+定义第i(i=1,2,…,n)个评价对象与最小值的距离
+$
+ D_i^{-}=\sqrt{\sum_{j=1}^m \boldsymbol{\omega}_j\left(Z_j^{-}-z_{i j}\right)^2}
+$
+\par
+第i(i=1,2,…,n)个评价对象得分： $S_i=\frac{D_i^{-}}{D_i^{+}+D_i^{-}}$\par
+很明显$0 \leq S_i \leq 1$,且$S_i$越大$D_i^{+}$越小，即越接近最大值。\par
+%\textbf{\textcolor[rgb]{0.98,0.00,0.00}{Input matlab source:}}
+%\lstinputlisting[language=Matlab]{./code/Standardization.m}\par
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=7cm]{pinlv.png}
+	\caption{pinlv} \label{d}
+\end{figure}
+最后，以20个国家的分数为连续变量建立频率分布直方图Figure 4，并进行曲线拟合。经过Q-Q图和Sharpiro-wilk检验，发现该曲线并不满足正态分布性质。\par
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=14cm]{jianyan.png}
+	\caption{jianyan} \label{e}
+\end{figure}
+
+\subsection{决策建议}
+我们最终得到了样本中20个国家的分数，将其从高到低进行排序得到Figure 6。当保险公司对是否在某一个地方开展保险这一业务做决策时，在了解当地的天气环境以及经济状况后，可以通过相同的数据处理和计算得到一个分数。同时保险公司事先通过排名选择两个位次作为决策点，比如以Figure 6 中总人数的$25\%$和$75\%$的这两个位次。前者以上，城市分数偏高，意味着风险小，记为建议承保区，值得保险公司去承保；后者以下，城市分数偏低，意味着风险大，记为不建议承保区，不值得保险公司去承保；而两者之间，记为风险区虽然有一定风险等，但客户群体庞大，再考虑过业主交纳保金数额等多方面因素后可以决定是否要冒险一试。如果不放心，可以尝试以买再保险的形式买一份保障。
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=16cm]{paiming.png}
+	\caption{paiming} \label{f}
+\end{figure}
+\subsection{举例展示模型}
+我们选取了Brazil,Japan两个国家，通过Figure 6可以看到，Brazil属于风险区，保险公司可以根据其他情况尝试冒险承保；Japan属于不建议区，所以不建议保险公司在此处担保。
+\section{Solution to Problem 2}
+\subsection{受灾风险评估模型}
+为了解决房地产商是否在某一地区进行房产开发的问题，我们考虑在受灾难严重的地方即房地产商会较低概率的选择在此处进行建设,Figure 7)是我们抽取的二十个城市样本的受灾表格图：\\
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=12cm]{p1.png}
+	\caption{} \label{g}
+\end{figure}
+我们根据受灾的频率作以简单的颜色划分，颜色较深的为受灾次数多的地区，颜色较浅的为受灾次数较少地区。在此基础上，我们沿用了第一个问题中使用层次分析法得到的灾难危害指数权重，与使用topsis优劣解距离法来得到相应的某一地区得分，样本仍然使用已有的二十个城市数据，依次计算出其得分如Figure 8：\\
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=12cm]{form.png}
+	\caption{}\label{h}
+\end{figure}
+我们在此基础上，仍然对他们用SPSS作Shapiro-wilk检验和Q-Q图检验，得到结果如Figure 9和Figure 10：\\
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=12cm]{p2.png}
+	\caption{}\label{i}
+\end{figure}
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=12cm]{p3.png}
+	\caption{}\label{j}
+\end{figure}
+因为Shapiro-wilk检验中的Significance值大于0.05，所以地区灾难分布符合正态分布，据此画出其对应的正态分布图如Figure 11：\\
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=12cm]{p4.png}
+	\caption{}\label{k}
+\end{figure}
+即其符合正态分布规律，我们假定当分数分布在百分之八十以下时，作为房地产商我
+决定选择此处建立我们的房产，即如Figure 12绿色部分所示：\\
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=12cm]{p5.png}
+	\caption{}\label{l}
+\end{figure}
+\subsection{抗灾能力决策模型}
+此外，为了帮助房地产开发商通过各防灾材料成本评估来确定是否在某处进行房屋建设，或同建立抗灾等级的建筑在原有资金上成功率如何，我们运用模糊综合评价模型，来确定某一建筑在抵御不同类型灾害下所需要的材料费用。\par
+模糊综合评价（Fuzzy Comprehensive Evaluation Method）是以模糊数学为基础，应用模糊关系合成的原理，将一些边界不清，不易定量的因素根据隶属度理论转化为定量因素，并进行综合评价的一种方法。这类方法具有结果清晰，系统性强的特点。\\
+模糊综合评价模型建立分为以下几个步骤：\\
+(1)建立评价因素集合
+$$
+\mathrm{U}=\left\{\mathrm{u}_1, \mathrm{u}_2, \cdots, \mathrm{u}_{\mathrm{m}}\right\}
+$$
+(2)构建评语集
+$$
+\mathrm{V}=\left\{\mathrm{v}_1, \mathrm{v}_2, \cdots, \mathrm{v}_{\mathrm{v}}\right\}
+$$
+(3)确定隶属函数\\
+因我们在此搜集的为本国不同等级材料价格数据，并以此依据划分隶属函数，因各产品三个等级划分依据不同，在此以第一组数据为例，由隶属函数确定其隶属度行向量如图所示：\\
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}{0.325\linewidth}
+		\centering
+		\includegraphics[width=0.9\linewidth]{p6.png}
+		\caption{}
+		\label{m}%文中引用该图片代号
+	\end{subfigure}
+	\centering
+	\begin{subfigure}{0.325\linewidth}
+		\centering
+		\includegraphics[width=0.9\linewidth]{p7.png}
+		\caption{}
+		\label{n}%文中引用该图片代号
+	\end{subfigure}
+	\centering
+	\begin{subfigure}{0.325\linewidth}
+		\centering
+		\includegraphics[width=0.9\linewidth]{p8.png}
+		\caption{}
+		\label{o}%文中引用该图片代号
+	\end{subfigure}
+	\caption{}
+	
+\end{figure}
+
+
+(4)确定隶属度矩阵
+$$
+R=\left[\begin{array}{cccc}
+	r_{11} & r_{12} & \cdots & r_{1 n} \\
+	r_{21} & r_{22} & \cdots & r_{2 n} \\
+	\cdots & \cdots & \cdots & \cdots \\
+	r_{m 1} & r_{m 2} & \cdots & r_{m n}
+\end{array}\right]
+$$
+其中，R 为评价因素论域 U 到评语论域 V 的一个模糊关系:$\mu_R\left(u_i, v_i\right)=r_{ij}$ 表示因素 $u_i$ 对评语等级 $v_i$ 的隶属度。
+(5)依据当地灾难防护需求确定权重向量A\\
+$$
+A=\left(a_1, a_2, \ldots, a_n\right)
+$$
+其中 $a_i, \quad i=1,2, \cdots, m$为第 i 个因素的权重；
+(6)计算综合评价结果，根据最大隶属度原则，选则最大的$b_j, \quad i=1,2, \cdots, n$ 作为综合评价结果。
+ $$\mathrm{B}=\mathrm{A} \times \mathrm{R}$$
+其中，B 为评价得到的等级模糊子集；A 为权重向量；R 为评价矩阵。\\
+结构图如下：\\
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=12cm]{p9.png}
+	\caption{}\label{sb}
+\end{figure}
+通过此模型的建立，结合当地的灾害发生倾向权重，最后得到一个等级模糊子集，来得到量化的数据，以判断开发商防灾方案的总花费等级，帮助开发商决策如何在此进行合理的防灾建设。\\
+\subsection{居民抗灾支付意愿模型}
+另外，我们还挑选了地震这一破坏性大，严重影响人们生活的这一自然灾害，来反映人们对于提高房屋建设成本来提高房屋韧性等级的意愿。在此过程中，我们设房屋的韧性等级为$n$，地震等级为$j$，地震受灾情况为$C_n$，依据地震烈度划分为罕遇地震$P_1$，设防地震$P_2$，和未发生地震$P_3$，同时引入经济学当中的前景理论来分析不同房屋韧性等级下，人们意愿度的大小：\\
+前景理论\\
+在运用前景理论的过程中，我们首先考虑到表达决策者的意愿程度与厌恶损失程度正相关，但又非完全的线性相关，所以引入前景理论，其旨在引入决策者非理性的价值感受因素影响。\\
+前景理论主要从两个方面考虑了决策者非理性的价值感受因素影响。\\
+即：对损失呈风险追逐态度\\
+对获利呈风险厌恶态度\\
+如图所示：\\
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=12cm]{p10.png}
+	\caption{}\label{sssb}
+\end{figure}
+其价值函数
+\[
+v\left( x \right) =\begin{cases} x^\aleph,&\text{if $x\ge 0$ }\\
+   	-\lambda(-x)^{\beta},&\text{if j<0}
+\end{cases}
+\]
+
+由数据资料得$\aleph$不等于$\beta$，$\aleph<\beta$，其取值在0.3~1.0之间，$\lambda$取值在0.3~2.5之间。在此，因为地震损失为纯粹风险，所以仅需选择$x<0$的情况下的价值函数，在此我们取值$\beta=0.88，\lambda=2.25$\\
+前景理论的另以核心假设时权重函数：\\
+为了做出最有利于自己的函数，决策者应评估每个选项的价值，然后才比较所有选项得出最终的价值函数\\
+所以最终价值($V$)由价值函数($v$)和权重函数($\omega$)决定\\
+价值函数($v$)   以结果的实际价值为自变量\\
+权重函数($\omega$)   以结果的产生概率为自变量\\
+决策权重函数指出对于任意概率$0<P<1  \omega(P)+\omega(1-P)<1$ 即为“次确定性”，意为人们对于互补的几件事发生概率的权重和小于1，且在P为0和1时发生突变\\
+其表达式为：
+$$
+\omega \left( P \right) =\frac{P^r}{\left[ p^r+\left( 1-p \right) ^r \right] ^{\frac{1}{r}}},0.5<r<1
+$$
+设支付意愿为WTP\\
+$$
+V(n)=\omega\left(P_1\right) v\left(-C_{n, 1}\right)+\omega\left(P_2\right) v\left(-C_{n, 2}\right)+\omega\left(P_3\right) v\left(-C_{n, 3}\right)
+$$
+意愿指数
+$$V\left(-W T P_n\right)=V_0-V_j$$\par
+设平均住房损失为$CM_{n,j}$依据（清华大学学报(自然科学版)居民家庭住宅建筑抗震韧性的支付意愿）中所叙述针对于不同韧性等级下的房屋在不同程度地震的受灾情况大体如下\par
+同时，根据《建筑抗震韧性评价标准》（ＧＢ／Ｔ３８５９１—２０２０要求，假设零星级和一星级建筑在设防地震和罕遇地震下都会产生损失且在两类地震下的损失指标上界不变，而二星级和三星级建筑仅在罕遇地震下会产生灾害损失。换言之，一星级相对于零星级的抗震韧性提升体现为在设防地震和罕遇地震下的损失均有所降。\par
+假设施工单位从利润最大化的角度出发，会以最低成本达到建筑抗震韧性等级要求，因此对各韧性等级建筑各项地震损失的计算均采用该等级损失指标的上界。\\
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=12cm]{f.png}
+	\caption{}\label{u}
+\end{figure}
+由此推断出如下不同地震等级下的房屋受损情况表：\\
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=12cm]{f2.png}
+	\caption{}\label{r}
+\end{figure}
+设人员伤亡成本为$CP$，人员密度为$d$，以人均可支配收入$I$乘以20年的剩余寿命计算赔偿金代表死亡成本，以地震平均医疗费用$H$代表受伤成本
+$$
+CP_{n,j}=\gamma_{H_{n,j}}\times d\times H+\gamma_{D_{n,j}}\times d\times I \times 20
+$$
+最后地震灾害损失
+$$
+CD_{n,j}=CM_{n,j}+CP_{n,j}
+$$
+得到居民意愿值与房屋韧性等级关系表如下表所示：\\
+\begin{table}
+	\centering
+	\caption{ Symbols Definition}
+	\begin{tabular}{|c|c|} 
+		\hline
+		等级提升 & 支付意愿     \\ 
+		\hline
+		0升1  & 33.2912  \\ 
+		\hline
+		1升2  & 40.7392  \\ 
+		\hline
+		2升3  & 51.3280  \\
+		\hline
+	\end{tabular}
+\end{table}
+该数据表明随着房屋韧性等级的提高居民支付意愿逐渐升高趋势越发明显，开发商无论是处于市场还是防灾人道主义考虑都有理由增强房屋的防灾性能。
+\section{Solution to Problem 3}
+\subsection{评价标准}
+\begin{figure}[h]
+	\small
+	\centering
+	\includegraphics[width=12cm]{pingjia.png}
+	\caption{pingjia} \label{fig:aaaaaaa}
+\end{figure}
+为了评判建筑物的价值，我们我们寻找了6个一级评价因素，12个二级评价因素作为评价体系
+\subsection{模型建立}
+建筑保护模型的建立，运用了两次模糊综合评价法。
+第一次(以B1为例):\par
+首先，B1的评价等级，由C1，C2，C3确定，即它们构成了评价因素集合；其次，按照高、中、低三个等级确定评语集合；紧接着，确定C1，C2，C3对分别对三个等级的隶属度确定隶属度矩阵；之后，通过层次分析法，专家调查法确定了C1，C2，C3三个评价因素的权重，确定权重向量；最后计算，得到B1在高、中、低三个等级的隶属度。
+第二次：B1到B6构成了A的评价因素集合，B1到B6在三个等级的隶属度再次构成了一个隶属度矩阵，然后又通过专家调查法或二元对比法得到评价因素的权重向量，最后得到评估建筑物A在高、中、低三个等级的隶属度。根据最大隶属度原则，选择隶属度最大的等级作为该建筑的价值等级。
+\subsection{决策建议}
+作为社区领袖，当选择了一个建筑物后，通过其各级评价指标的数据的收集综合得到它最终的价值等级。如果等级为低，则不建议保留该建筑；等级为中级，则建议保留，并采取一定措施保护；等级为高，则采取最好的措施重点保护该建筑。当然，实际情况可以将等级分得更细致从而对不同建筑采取保护程度更鲜明的措施。
+\section{Model Evaluation and Further Discussion}
+
+整篇文章一共建立起四个数学模型：承保风险评估模型,抗灾能力决策模型,居民抗灾支付意愿模型,建筑保护模型。虽然在假设情况下，模型已经可以解决很多问题，但仍然还有一定缺陷。\par
+\subsection{Strength}
+\begin{itemize}
+\item 
+\item 
+\item 
+\item 	
+\end{itemize}
+\subsection{Weakness}
+\begin{itemize}
+\item 
+\item 
+\item 
+\item
+\end{itemize}
+\newpage
+\section{建议信}
+\thispagestyle{empty} % 隐藏页码
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{letter.png}
+	\caption{占据完整页面的图片}
+	\label{fig:full_page_image}
+\end{figure}
+
+作者：甚远
+链接：https://www.zhihu.com/question/395367854/answer/3060435757
+来源：知乎
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+\begin{thebibliography}{99}
+\bibitem{1} D.~E. KNUTH   The \TeX{}book  the American
+Mathematical Society and Addison-Wesley
+Publishing Company , 1984-1986.
+\bibitem{2}Lamport, Leslie,  \LaTeX{}: `` A Document Preparation System '',
+Addison-Wesley Publishing Company, 1986.
+\bibitem{3}\url{http://www.latexstudio.net/}
+\bibitem{4}\url{http://www.chinatex.org/}
+\end{thebibliography}
+
+
+\end{document}
+
+%This  system can be used for many types of airplanes, and it also
+%solves the interference during  the procedure of the boarding
+%airplane,as described above we can get to the  optimization\cite{2}
+%boarding time.We also know that all the service is automate.
+%
+%Balancing the cost of the cost and the benefit, it will bring in
+%more convenient  for airport and passengers.It also saves many\cite{1}
+%human resources for the airline. \item \textbf{}
